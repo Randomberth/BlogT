@@ -1,7 +1,11 @@
 
 function Contact() {
   return (
-    <div className="flex flex-1 bg-violet-600 font-bold text-black items-center justify-center">CONTACT</div>
+    <div className="bg-violet-600 w-screen">
+      <div className="py-28 bg-black text-center text-white px-4">
+      <h2 className="text-5xl lg:text-7xl leading-snug font-bold mb-5">Contact us Page</h2>
+      </div>
+    </div>
   )
 }
 
