@@ -5,9 +5,15 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ['main']
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+# Enviroment var
+env:
+      VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
+      VITE_READ_ALL_ENDPOINT: ${{ secrets.VITE_READ_ALL_ENDPOINT }}
+      VITE_READ_API_KEY: ${{ secrets.VITE_READ_API_KEY }}
+      VITE_READ_API_AUTH: ${{ secrets.VITE_READ_API_AUTH }}
 
 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
@@ -27,11 +33,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    env:
-      VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
-      VITE_READ_ALL_ENDPOINT: ${{ secrets.VITE_READ_ALL_ENDPOINT }}
-      VITE_READ_API_KEY: ${{ secrets.VITE_READ_API_KEY }}
-      VITE_READ_API_AUTH: ${{ secrets.VITE_READ_API_AUTH }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
