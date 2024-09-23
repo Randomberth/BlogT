@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllBlog } from "../../utils/getblog";
+import { ArrayTest } from "../../utils/constants";
 
 
 function BlogPage() {
@@ -13,7 +14,7 @@ function BlogPage() {
 
   async function getDataB (){
     const dataB = await getAllBlog()
-    setDataBlog(dataB);
+    dataB.length === 0 ? setDataBlog(ArrayTest) : setDataBlog(dataB);
     console.log("my state dataBlog", dataB);
     
   }

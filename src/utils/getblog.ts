@@ -22,7 +22,7 @@ export async function getAllBlog() {
         const response = await instance.get(readENDPOINT)
         const { data } = response;
         console.log(data);
-        return data
+        return []
         
     } catch (error) {
         console.log(error);
