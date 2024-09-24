@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllBlog } from "../../utils/getblog";
-import { ArrayTest } from "../../utils/constants";
+//import { ArrayTest } from "../../utils/constants";
 
 
 function BlogPage() {
@@ -14,21 +14,19 @@ function BlogPage() {
 
   async function getDataB() {
     const dataB = await getAllBlog()
-    dataB?.length === 0 ? setDataBlog(ArrayTest) : setDataBlog(dataB);
-    //setDataBlog(dataB)
-    console.log('dataBlog  :', dataBlog);
-
-
+    console.log('dataB  :', dataB);
+    //dataB?.length === 0 ? setDataBlog(ArrayTest) : setDataBlog(dataB);
+    setDataBlog(dataB);
   }
 
 
   return (
-    <div className="w-[400px] h-[400px] flex items-center justify-center bg-green-300">
+    <div className="w-[400px] h-[400px] flex flex-col items-center justify-center bg-green-300 mt-2">
 
       {/* Map through the array and access the "author" property      */}
 
       {dataBlog.map((item: any) => (
-        <p key={item.id}>Author: {item.author}</p>
+        <p key={item.id}>Author id: {item.id}</p>
       ))}
 
 
