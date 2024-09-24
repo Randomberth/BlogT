@@ -1,6 +1,6 @@
 export const ArrayTest = [
     {
-        "id": 3,
+        "id": 1,
         "title": "Making wearable medical devices more patient-friendly with Professor Esther Rodriguez-Villegas from Acurable",
         "image": "https://techcrunch.com/wp-content/uploads/2022/05/found-2022-featured.jpg?w=430&h=230&crop=1",
         "category": "Health",
@@ -12,7 +12,7 @@ export const ArrayTest = [
         "tags": ["Biotech", "Health"]
     },
     {
-        "id": 4,
+        "id": 2,
         "title": "Rainforest raises $8.5M to help software companies embed financial services, payments",
         "image": "https://techcrunch.com/wp-content/uploads/2015/02/shutterstock_128451140.jpg?w=430&h=230&crop=1",
         "category": "Fintech",
