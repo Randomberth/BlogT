@@ -9,14 +9,15 @@ function BlogPage() {
 
   useEffect(() => {
     getDataB().catch(null)
-    //setDataBlog(ArrayTest)
 
   }, [])
 
   async function getDataB() {
     const dataB = await getAllBlog()
     dataB?.length === 0 ? setDataBlog(ArrayTest) : setDataBlog(dataB);
-    setDataBlog(ArrayTest)
+    //setDataBlog(dataB)
+    console.log('dataBlog  :', dataBlog);
+
 
   }
 
