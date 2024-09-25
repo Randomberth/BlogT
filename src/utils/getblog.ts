@@ -1,4 +1,5 @@
 import axios from "axios";
+import { InterfaceArticleBlog } from "./types";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL
 const READ_API_KEY = import.meta.env.VITE_READ_API_KEY
@@ -17,7 +18,7 @@ const instance = axios.create({
 
 
 
-export async function getAllBlog() {
+export async function getAllBlog(): Promise<InterfaceArticleBlog[] | undefined> {
     try {
         const response = await instance.get(readENDPOINT)
         const { data } = response;

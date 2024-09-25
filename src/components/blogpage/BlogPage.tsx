@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { getAllBlog } from "../../utils/getblog";
 //import { ArrayTest } from "../../utils/constants";
+import { InterfaceArticleBlog } from "../../utils/types";
 
 
 function BlogPage() {
 
-  const [dataBlog, setDataBlog] = useState<any>([])
+  const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
 
   useEffect(() => {
     getDataB().catch(null)
@@ -13,11 +14,11 @@ function BlogPage() {
   }, [])
 
   async function getDataB() {
-    const dataB = await getAllBlog()
-    console.log('dataB  :', dataB);
-    //dataB?.length === 0 ? setDataBlog(ArrayTest) : setDataBlog(dataB);
-    setDataBlog(dataB);
+    const dataB: InterfaceArticleBlog[] | undefined = await getAllBlog()
+    const dataToUse: InterfaceArticleBlog[] = dataB || [];
+    setDataBlog(dataToUse);
   }
+  console.log('dataBlog :', dataBlog);
 
 
   return (
