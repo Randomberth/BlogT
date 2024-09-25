@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-//import { getAllBlog } from "../../utils/getblog";
-//import { ArrayTest } from "../../utils/constants";
+import { getAllBlog } from "../../utils/getblog";
 import { InterfaceArticleBlog } from "../../utils/types";
 
 
@@ -14,8 +13,7 @@ function BlogPage() {
   }, [])
 
   async function getDataB() {
-    //const dataB: InterfaceArticleBlog[] | undefined = await getAllBlog()
-    const dataB = undefined
+    const dataB: InterfaceArticleBlog[] | undefined = await getAllBlog()
     const dataToUse: InterfaceArticleBlog[] = dataB || [];
     setDataBlog(dataToUse);
   }
