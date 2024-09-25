@@ -22,7 +22,6 @@ function BlogPage() {
 
   return (
     <div className="w-[400px] h-[400px] flex flex-col items-center justify-center bg-green-300 mt-2">
-
       {/* Map through the array and access the "author" property      */}
 
       {dataBlog.map((item: any) => (
