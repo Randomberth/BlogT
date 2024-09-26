@@ -1,4 +1,8 @@
+import { NavLink } from "react-router-dom";
 import { InterfaceArticleBlog } from "../../utils/types"
+import { FaUser } from "react-icons/fa6";
+import { format } from 'date-fns';
+
 
 interface typeArrayBlogProp {
     blogs: InterfaceArticleBlog[]
@@ -6,14 +10,40 @@ interface typeArrayBlogProp {
 
 const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs }) => {
 
+    const filteredBlogs: InterfaceArticleBlog[] = blogs
+    console.log('filteredBlogs ::::', filteredBlogs);
 
+    const dateToText = (date: Date): string => {
+        const formattedDate = format(date, 'yyyy-MM-dd'); // Ajusta el formato según tus necesidades
+
+        return formattedDate
+    };
 
     return (
         <div>
             {
-                blogs.map((item: any) => (
-                    <p key={item.id}>Author id: {item.id}</p>
-                ))}
+                filteredBlogs.map((blog) =>
+
+                    <NavLink to="#" key={blog.id}>
+                        <div>
+                            <img src={blog.image} alt="" className="w-full" />
+                        </div>
+                        <h3 className="mt-4 mb-2 font-bold hover:text-blue-600 cursor-pointer">{blog.title}</h3>
+                        <p className="mb-2 text-gray-600"><FaUser className="inline-flex items-center mr-2" /> {blog.author}</p>
+                        <p className="text-sm text-gray-600">Published: {dateToText(blog.published_date)}</p>
+
+                    </NavLink>)
+
+
+
+
+
+
+
+                /*                filteredBlogs.map((item: any) => (
+                                    <p key={item.id}>Author id: {item.id}</p>
+                                ))*/
+            }
         </div>
     )
 }

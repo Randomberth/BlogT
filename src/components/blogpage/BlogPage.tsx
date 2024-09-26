@@ -21,7 +21,7 @@ function BlogPage() {
 
 
   return (
-    <div className="w-full flex flex-1 flex-col items-center justify-center bg-violet-600">
+    <div className="w-full flex flex-1 flex-col items-center justify-center bg-white">
 
       {/* Map through the array and access the "author" property      
 
