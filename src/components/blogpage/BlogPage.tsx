@@ -6,18 +6,20 @@ import Blogcards from "../blogcards";
 function BlogPage() {
 
   const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
-  //const [currentPage, setCurrentPage] = useState<number>(1)
-  // const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const pageSize: number = 12 // blogs per page
-
+  
   useEffect(() => {
     getDataB().catch(null)
+    setCurrentPage(1)
+    setSelectedCategory(null)
 
   }, [])
 
   async function getDataB() {
     //    const dataB: InterfaceArticleBlog[] | undefined = await getAllBlog()
-    const dataB: InterfaceArticleBlog[] | undefined = await getFilteredBlog(pageSize, 10, null)
+    const dataB: InterfaceArticleBlog[] | undefined = await getFilteredBlog(pageSize, currentPage, selectedCategory)
     const dataToUse: InterfaceArticleBlog[] = dataB || [];
     setDataBlog(dataToUse);
   }
