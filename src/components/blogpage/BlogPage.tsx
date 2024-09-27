@@ -12,8 +12,11 @@ function BlogPage() {
   
   useEffect(() => {
     getDataB().catch(null)
-    setCurrentPage(1)
-    setSelectedCategory(null)
+
+    if (currentPage == 0)
+      {setCurrentPage(1)
+      setSelectedCategory(null)
+      }
 
   }, [])
 
