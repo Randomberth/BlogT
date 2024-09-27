@@ -32,4 +32,16 @@ export async function getAllBlog(): Promise<InterfaceArticleBlog[] | undefined> 
 
 }
 
-
+/*
+axios.get('/api/productos', {
+    params: {
+      limit: 10,
+      page: 2
+    }
+  })
+  .then(response => {
+    // ...
+  })
+  .catch(error => {
+    // ...
+  }); */
