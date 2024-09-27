@@ -5,7 +5,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL
 const READ_API_KEY = import.meta.env.VITE_READ_API_KEY
 const readAuthKey = import.meta.env.VITE_READ_API_AUTH
 const readAllENDPOINT = import.meta.env.VITE_READ_ALL_ENDPOINT
-//const filteredENDPOINT = import.meta.env.VITE_READ_FILTERED_ENDPOINT
+const filteredENDPOINT = import.meta.env.VITE_READ_FILTERED_ENDPOINT
 
 
 
@@ -38,15 +38,15 @@ export async function getFilteredBlog(pageSize: number, currentPage: number, sel
   try {
     const OffSet = (currentPage - 1) * pageSize;
     const Viod = selectedCategory
-    let URL = `https://nnpkwtnuymrjomvbhxww.supabase.co/rest/v1/Blogs?limit=${pageSize}&offset=${OffSet}`
-    const response = await instance.get(URL)
-   /* const response = await instance.get(filteredENDPOINT, {
+    //let URL = `https://nnpkwtnuymrjomvbhxww.supabase.co/rest/v1/Blogs?limit=${pageSize}&offset=${OffSet}`
+    //const response = await instance.get(URL)
+    const response = await instance.get(filteredENDPOINT, {
       params: {
         limit: pageSize,
         offset: OffSet,
-        category: selectedCategory
+//        category: selectedCategory
       }
-    })*/
+    })
     const { data } = response;
     console.log(data, Viod);
     return data
