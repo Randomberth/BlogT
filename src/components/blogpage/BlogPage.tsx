@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
-import { getAllBlog } from "../../utils/getblog";
+import { getFilteredBlog } from "../../utils/getblog";
 import { InterfaceArticleBlog } from "../../utils/types";
 import Blogcards from "../blogcards";
 
 function BlogPage() {
 
   const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
-  // pending const [currentPAge, setCurrentPAge] = useState<number>(1)
-  // pending const [SelectedCategory, setSelectedCategory] = useState<any>(null)
-  // pending const pageSize = 12 // blogs per page
+  //const [currentPage, setCurrentPage] = useState<number>(1)
+  // const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const pageSize: number = 12 // blogs per page
 
   useEffect(() => {
     getDataB().catch(null)
 
   }, [])
 
-  async function getDataB() { 
-    const dataB: InterfaceArticleBlog[] | undefined = await getAllBlog()
+  async function getDataB() {
+    //    const dataB: InterfaceArticleBlog[] | undefined = await getAllBlog()
+    const dataB: InterfaceArticleBlog[] | undefined = await getFilteredBlog(pageSize, 10, null)
     const dataToUse: InterfaceArticleBlog[] = dataB || [];
     setDataBlog(dataToUse);
   }
