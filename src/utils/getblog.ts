@@ -37,18 +37,16 @@ export async function getAllBlog(): Promise<InterfaceArticleBlog[] | undefined> 
 export async function getFilteredBlog(pageSize: number, currentPage: number, selectedCategory: string | null): Promise<InterfaceArticleBlog[] | undefined> {
   try {
     const OffSet = (currentPage - 1) * pageSize;
-    const Viod = selectedCategory
-    //let URL = `https://nnpkwtnuymrjomvbhxww.supabase.co/rest/v1/Blogs?limit=${pageSize}&offset=${OffSet}`
-    //const response = await instance.get(URL)
-    const response = await instance.get(filteredENDPOINT, {
-      params: {
+    //console.log("URL",`${filteredENDPOIND}${selectedCategory}`);
+    const FinalEndPoint = selectedCategory ? `${filteredENDPOINT}${selectedCategory}` : readAllENDPOINT 
+  //  console.log("FINAL endpoint", FinalEndPoint);
+    const response = await instance.get( FinalEndPoint, {
+        params: {
         limit: pageSize,
         offset: OffSet,
-//        category: selectedCategory
       }
     })
     const { data } = response;
-    console.log(data, Viod);
     return data
 
   } catch (error) {

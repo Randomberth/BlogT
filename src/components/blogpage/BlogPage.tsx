@@ -9,13 +9,16 @@ function BlogPage() {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const pageSize: number = 12 // blogs per page
+//  setSelectedCategory("Health");
   
   useEffect(() => {
+    console.log('Category BlogPage: ', selectedCategory);
+    
     getDataB().catch(null)
 
     if (currentPage == 0)
       {setCurrentPage(1)
-      setSelectedCategory(null)
+      setSelectedCategory("null")
       }
 
   }, [])
