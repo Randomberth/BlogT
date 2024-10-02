@@ -12,7 +12,6 @@ function BlogPage() {
 //  setSelectedCategory("Health");
   
   useEffect(() => {
-    console.log('Category BlogPage: ', selectedCategory);
     
     getDataB().catch(null)
 
@@ -24,7 +23,6 @@ function BlogPage() {
   }, [])
 
   async function getDataB() {
-    //    const dataB: InterfaceArticleBlog[] | undefined = await getAllBlog()
     const dataB: InterfaceArticleBlog[] | undefined = await getFilteredBlog(pageSize, currentPage, selectedCategory)
     const dataToUse: InterfaceArticleBlog[] = dataB || [];
     setDataBlog(dataToUse);
