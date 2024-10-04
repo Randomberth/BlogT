@@ -8,7 +8,7 @@ function BlogPage() {
 
   const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [selectedCategory, setSelectedCategory] = useState<string | null>("AI")
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   //const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [pagesByCategory, setPagesByCategory] = useState<number>(0)
   const pageSize: number = 9 // blogs per page
