@@ -3,11 +3,14 @@ import { InterfaceArticleBlog } from "../../utils/types"
 import { FaUser } from "react-icons/fa6";
 import { format } from 'date-fns';
 
-
 interface typeArrayBlogProp {
     blogs: InterfaceArticleBlog[]
+//    currentPage: number,
+//    selectedCategory : string | null,
+//    pageSize: number
 }
 
+//const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs, currentPage, selectedCategory, pageSize }) => {
 const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs }) => {
 
     let filteredBlogs: InterfaceArticleBlog[] = []
@@ -15,7 +18,7 @@ const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs }) => {
     //const filteredBlogs: InterfaceArticleBlog[] = blogs
     filteredBlogs = blogs
     
-    console.log('filteredBlogs ::::', filteredBlogs);
+//    console.log('filteredBlogs ::::', filteredBlogs, currentPage, selectedCategory, pageSize);
 
     const dateToText = (date: Date): string => {
         const formattedDate = format(date, 'yyyy-MM-dd'); // Ajusta el formato según tus necesidades

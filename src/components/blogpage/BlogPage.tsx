@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { getFilteredBlog } from "../../utils/getblog";
 import { InterfaceArticleBlog } from "../../utils/types";
 import Blogcards from "../blogcards";
+import Pagination from "../pagination";
 
 function BlogPage() {
 
   const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+//  //  const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const pageSize: number = 12 // blogs per page
-//  setSelectedCategory("Health");
   
   useEffect(() => {
     
@@ -17,10 +18,10 @@ function BlogPage() {
 
     if (currentPage == 0)
       {setCurrentPage(1)
-      setSelectedCategory("null")
+      setSelectedCategory("AI")
       }
 
-  }, [])
+  }, [pageSize, currentPage, selectedCategory])
 
   async function getDataB() {
     const dataB: InterfaceArticleBlog[] | undefined = await getFilteredBlog(pageSize, currentPage, selectedCategory)
@@ -28,6 +29,17 @@ function BlogPage() {
     setDataBlog(dataToUse);
   }
   //console.log('dataBlog :', dataBlog);
+/*
+const handlePageChange = (pageNumber: number): void => {
+  setCurrentPage(pageNumber);
+}
+
+/*const handleCategoryChange = (category: string | null): void => {
+  setSelectedCategory(category);
+  setActiveCategory(category);
+  setCurrentPage(1);
+}*/
+
 
 
   return (
@@ -43,14 +55,18 @@ function BlogPage() {
 
       {/* category section */}
       <div> Page Category</div>
-
+      
       {/* blogCards section */}
       <div>
-        <Blogcards blogs={dataBlog} />
+   {/*    <Blogcards blogs={dataBlog} currentPage={currentPage} selectedCategory={selectedCategory} pageSize={pageSize} />   */}
+      <Blogcards blogs={dataBlog}/>   
+  
       </div>
 
       {/* pagination section */}
-      <div>Pagination Section</div>
+      <div>
+        <Pagination blogs={dataBlog} currentPage={currentPage}  pageSize={pageSize} /* onPageChange={handlePageChange}*//>
+      </div>
 
 
 

@@ -18,8 +18,6 @@ const instance = axios.create({
   }
 });
 
-
-
 export async function getAllBlog(): Promise<InterfaceArticleBlog[] | undefined> {
   try {
     const response = await instance.get(readAllENDPOINT)
@@ -32,7 +30,6 @@ export async function getAllBlog(): Promise<InterfaceArticleBlog[] | undefined> 
 
   }
 }
-
 
 export async function getFilteredBlog(pageSize: number, currentPage: number, selectedCategory: string | null): Promise<InterfaceArticleBlog[] | undefined> {
   try {
