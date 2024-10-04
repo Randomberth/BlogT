@@ -34,9 +34,7 @@ export async function getAllBlog(): Promise<InterfaceArticleBlog[] | undefined> 
 export async function getFilteredBlog(pageSize: number, currentPage: number, selectedCategory: string | null): Promise<InterfaceArticleBlog[] | undefined> {
   try {
     const OffSet = (currentPage - 1) * pageSize;
-    //console.log("URL",`${filteredENDPOIND}${selectedCategory}`);
     const FinalEndPoint = selectedCategory ? `${filteredENDPOINT}${selectedCategory}` : readAllENDPOINT
-    //  console.log("FINAL endpoint", FinalEndPoint);
     const response = await instance.get(FinalEndPoint, {
       params: {
         limit: pageSize,
@@ -44,8 +42,6 @@ export async function getFilteredBlog(pageSize: number, currentPage: number, sel
       }
     })
     const { data } = response;
-    //console.log("cantidad de articles", data.length);
-
     return data
 
   } catch (error) {
@@ -58,11 +54,11 @@ export async function getFilteredBlog(pageSize: number, currentPage: number, sel
 export async function getLenghtCategory(selectedCategory: string | null): Promise<number> {
   try {
     const FinalEndPoint = selectedCategory ? `${filteredENDPOINT}${selectedCategory}` : readAllENDPOINT
-    //  console.log("FINAL endpoint", FinalEndPoint);
     const response = await instance.get(FinalEndPoint)
     const { data } = response;
-    const pages: number = data.length
-    //    console.log("getLenghtCategory", pages);
+    //    const pages: number = data.length
+    const pages = data.pages || data.length; // Check for "pages" property first
+
 
     return pages
 
