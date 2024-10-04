@@ -22,7 +22,7 @@ export async function getAllBlog(): Promise<InterfaceArticleBlog[] | undefined> 
     //const response = await instance.get(`readAllENDPOINT${paramTotalReg}`)
     const response = await instance.get(readAllENDPOINT)
     const { data } = response;
-    console.log('parammm', data.length);
+//    console.log('parammm', data.length);
     return data
 
   } catch (error) {
