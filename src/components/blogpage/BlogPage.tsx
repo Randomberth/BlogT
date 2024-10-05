@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getFilteredBlog } from "../../utils/getblog";
+import { getFilteredBlog, getLenghtCategory } from "../../utils/getblog";
 import { InterfaceArticleBlog } from "../../utils/types";
 import Blogcards from "../blogcards";
 import Pagination from "../pagination";
@@ -15,7 +15,7 @@ function BlogPage() {
 
   useEffect(() => {
     getDataBlog().catch(null)
-//    getPagesByCategory().catch(null)
+    getPagesByCategory().catch(null)
 
     if (currentPage == 0) {
       setCurrentPage(1)
@@ -34,11 +34,11 @@ function BlogPage() {
 //  console.log("total articles by category", pagesByCategory);
 
 
-  /*async function getPagesByCategory() {
+  async function getPagesByCategory() {
     const pages: number = await getLenghtCategory(selectedCategory)
     setPagesByCategory(pages)
   }
-*/
+
 
   const handlePageChange = (pageNumber: number): void => {
     setCurrentPage(pageNumber);

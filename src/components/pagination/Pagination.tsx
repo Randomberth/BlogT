@@ -14,25 +14,22 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ blogs, currentPage, pag
   let PaginationBlog: InterfaceArticleBlog[] = blogs
   console.log("log de tramite", PaginationBlog);
 
-
-  /* const totalPages = Math.ceil(blogs.length / pageSize)
-   console.log("TotalPages", totalPages); */
-
-
-
+  const totalPages = Math.ceil(pagesByCategory / pageSize)
+  console.log("TotalPages", totalPages);
   console.log("Current Page", currentPage, "size of Page", pageSize, "pages By Category", pagesByCategory);
 
   return (
     <div className="text-bold text-violet-600 flex gap-4 items-center py-4">
       Pagination
+    <div>
+
+    </div>
+
       <button
         className="w-20 h-8 rounded-lg bg-violet-700"
-        onClick={() => onPageChange(1)}>
+        onClick={() => onPageChange(10)}>
         GO!
       </button>
-
-
-
     </div>
   )
 }
