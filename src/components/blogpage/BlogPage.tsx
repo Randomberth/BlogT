@@ -8,9 +8,9 @@ function BlogPage() {
 
   const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState<string | null>("AI")
   //const [activeCategory, setActiveCategory] = useState<string | null>(null)
-  const [pagesByCategory, setPagesByCategory] = useState<number>(0)
+  const [elementsByCategory, setElementsByCategory] = useState<number>(0)
   const pageSize: number = 9 // blogs per page
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function BlogPage() {
     if (currentPage == 0) {
       setCurrentPage(1)
       setSelectedCategory("AI")
-      setPagesByCategory(0)
+      setElementsByCategory(0)
     }
 
   }, [pageSize, currentPage, selectedCategory])
@@ -36,7 +36,7 @@ function BlogPage() {
 
   async function getPagesByCategory() {
     const pages: number = await getLenghtCategory(selectedCategory)
-    setPagesByCategory(pages)
+    setElementsByCategory(pages)
   }
 
 
@@ -75,7 +75,7 @@ function BlogPage() {
 
       {/* pagination section */}
       <div>
-        <Pagination blogs={dataBlog} currentPage={currentPage} pageSize={pageSize} pagesByCategory={pagesByCategory} onPageChange={handlePageChange} />
+        <Pagination blogs={dataBlog} currentPage={currentPage} pageSize={pageSize} elementsByCategory={elementsByCategory} onPageChange={handlePageChange} />
       </div>
 
 
