@@ -18,7 +18,7 @@ useEffect(() => {
   const getCategories = async(): Promise<void> => {
     try {
       const dataCategories: string[] | undefined =   await getDataCategories().catch(null)
-      const arrayCategories: string[] = dataCategories ? ['All', ...dataCategories] : [];
+      const arrayCategories: string[] | undefined = dataCategories ? ['All', ...dataCategories] : [];
       setCategory(arrayCategories)
       console.log("arrayCategories: ",arrayCategories);
       
