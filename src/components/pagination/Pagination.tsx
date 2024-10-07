@@ -47,8 +47,8 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ blogs, currentPage, pag
           <ul className="flex gap-5" >
             {pagesNumbers.map( nPage => (
               <li key={nPage}  
-                  className={` ${nPage === currentPage ? 'font-extrabold text-xl underline' : 'font-normal'}`}>
-                  <a className="cursor-pointer" onClick={() => onPageChange(nPage)}  style={{backgroundColor:`${val}`}} >{nPage}</a>
+                  className={`flex  w-7 h-7 border rounded-md justify-center items-center ${nPage === currentPage ? 'font-extrabold text-xl underline bg-slate-100' : 'font-normal'}`}>
+                  <a className="cursor-pointer " onClick={() => onPageChange(nPage)}  style={{backgroundColor:`${val}`}} >{nPage}</a>
               </li>
             ))}
           </ul>
