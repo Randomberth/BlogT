@@ -75,7 +75,7 @@ function BlogPage() {
 
       {/* pagination section */}
       <div>
-        <Pagination blogs={dataBlog} currentPage={currentPage} pageSize={pageSize} elementsByCategory={elementsByCategory} onPageChange={handlePageChange} />
+        <Pagination currentPage={currentPage} pageSize={pageSize} elementsByCategory={elementsByCategory} onPageChange={handlePageChange} />
       </div>
 
 

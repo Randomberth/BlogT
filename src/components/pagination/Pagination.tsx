@@ -1,24 +1,15 @@
-import { InterfaceArticleBlog } from "../../utils/types"
 
 interface typeArrayPaginationProp {
-  blogs: InterfaceArticleBlog[]
   currentPage: number,
   pageSize: number,
   elementsByCategory: number,
   onPageChange: (pageNumber: number) => void
 }
 
-
-
-const Pagination: React.FC<typeArrayPaginationProp> = ({ blogs, currentPage, pageSize, elementsByCategory, onPageChange }) => {
-  let PaginationBlog: InterfaceArticleBlog[] = blogs
-  console.log("log de tramite", PaginationBlog);
+const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, pageSize, elementsByCategory, onPageChange }) => {
 
 
   const totalPages = Math.ceil(elementsByCategory / pageSize)
-  console.log("TotalPages", totalPages);
-  console.log("Current Page", currentPage, "Elements of Page", pageSize, "Elements by Category", elementsByCategory);
-
   const pagesNumbers = []
 
   for (let i = 1; i <= totalPages; i++ ) {
@@ -58,11 +49,6 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ blogs, currentPage, pag
 
       </nav>
 
-{/*      <button
-        className="w-20 h-8 rounded-lg bg-violet-700"
-        onClick={() => onPageChange(10)}>
-        GO!
-  </button>    */}
     </div>
   )
 }
