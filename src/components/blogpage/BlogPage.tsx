@@ -3,13 +3,14 @@ import { getFilteredBlog, getLenghtCategory } from "../../utils/getblog";
 import { InterfaceArticleBlog } from "../../utils/types";
 import Blogcards from "../blogcards";
 import Pagination from "../pagination";
+import CategoryFilter from "../categoryFilter";
 
 function BlogPage() {
 
   const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-  //const [activeCategory, setActiveCategory] = useState<string | null>(null)
+//  const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
   const pageSize: number = 9 // blogs per page
 
@@ -30,8 +31,6 @@ function BlogPage() {
     const dataToUse: InterfaceArticleBlog[] = dataB || [];
     setDataBlog(dataToUse);
   }
-//  console.log('Articles by Page :', pageSize);
-//  console.log("total articles by category", pagesByCategory);
 
 
   async function getPagesByCategory() {
@@ -44,11 +43,10 @@ function BlogPage() {
     setCurrentPage(pageNumber);
   }
 
-  /*const handleCategoryChange = (category: string | null): void => {
+  const handleCategoryChange = (category: string | null): void => {
     setSelectedCategory(category);
-    //setActiveCategory(category);
     setCurrentPage(1);
-  }*/
+  }
 
 
 
@@ -64,7 +62,9 @@ function BlogPage() {
       */}
 
       {/* category section */}
-      <div> Page Category</div>
+      <div> 
+        <CategoryFilter selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange}/>
+      </div>
 
       {/* blogCards section */}
       <div>
