@@ -14,6 +14,7 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ blogs, currentPage, pag
   let PaginationBlog: InterfaceArticleBlog[] = blogs
   console.log("log de tramite", PaginationBlog);
 
+
   const totalPages = Math.ceil(elementsByCategory / pageSize)
   console.log("TotalPages", totalPages);
   console.log("Current Page", currentPage, "Elements of Page", pageSize, "Elements by Category", elementsByCategory);
@@ -31,28 +32,27 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ blogs, currentPage, pag
 
   const pageChangeDown = (nPageF: number):void => {
     const previous: number = (nPageF <= 1 ) ? nPageF : nPageF - 1
-    console.log(previous);
-    
     onPageChange(previous)
     }
 
+  let val: string | null = null;
+
+
   return (
-    <div className="text-bold text-violet-600 flex gap-4 items-center py-4">
-      <nav className="flex gap-4">
-        <a className="font-bold text-violet-700 cursor-pointer" onClick={() => pageChangeDown(currentPage)}>
+    <div className=" flex gap-4 items-center py-4">
+      <nav className="flex gap-7">
+        <a className="font-bold cursor-pointer" onClick={() => pageChangeDown(currentPage)}>
           Previus
         </a>
-          <ul className="flex gap-3">
+          <ul className="flex gap-5" >
             {pagesNumbers.map( nPage => (
-              <li key={nPage}>
-                <a className="cursor-pointer" onClick={() => onPageChange(nPage)}>{nPage}</a>
+              <li key={nPage}  
+                  className={` ${nPage === currentPage ? 'font-extrabold text-xl underline' : 'font-normal'}`}>
+                  <a className="cursor-pointer" onClick={() => onPageChange(nPage)}  style={{backgroundColor:`${val}`}} >{nPage}</a>
               </li>
             ))}
-            <li>
-
-            </li>
           </ul>
-        <a className="font-bold text-violet-700 cursor-pointer"  onClick={() => pageChangeUp(currentPage)}>
+        <a className="font-bold cursor-pointer"  onClick={() => pageChangeUp(currentPage)}>
           Next
         </a>
 
