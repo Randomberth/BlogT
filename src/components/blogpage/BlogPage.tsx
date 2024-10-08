@@ -10,7 +10,7 @@ function BlogPage() {
 
   const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState<string | null>("AI")
   //const [activeCategory, setActiveCategory] = useState<string>("")
   const [categories, setCategories] = useState<string[] | undefined>([])
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
@@ -21,7 +21,7 @@ function BlogPage() {
     getPagesByCategory().catch(null)
     getCategoriesName();
 
-   
+
     if (currentPage == 0) {
       setCurrentPage(1)
       setSelectedCategory("AI")
@@ -41,15 +41,15 @@ function BlogPage() {
   }
 
 
-  const getCategoriesName = async() => {
+  const getCategoriesName = async () => {
     try {
-      const arrayCategories: string[] | undefined  = await getDataCategories()
+      const arrayCategories: string[] | undefined = await getDataCategories()
       setCategories(arrayCategories)
-   
-      console.log("arrayCategories: ",arrayCategories);
+
+      console.log("arrayCategories: ", arrayCategories);
     } catch (error) {
       console.log(error);
-        
+
     }
   }
 
@@ -82,8 +82,8 @@ function BlogPage() {
       */}
 
       {/* category section */}
-      <div> 
-        <CategoryFilter categories={categories} selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange}/> 
+      <div>
+        <CategoryFilter categories={categories} selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange} />
       </div>
 
       {/* blogCards section */}
