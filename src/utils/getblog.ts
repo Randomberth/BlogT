@@ -1,11 +1,11 @@
 import axios from "axios";
 import { InterfaceArticleBlog } from "./types";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL
-const READ_API_KEY = import.meta.env.VITE_READ_API_KEY
-const readAuthKey = import.meta.env.VITE_READ_API_AUTH
-const readAllENDPOINT = import.meta.env.VITE_READ_ALL_ENDPOINT
-const filteredENDPOINT = import.meta.env.VITE_READ_FILTERED_ENDPOINT
+const BASE_URL: string = import.meta.env.VITE_BASE_URL
+const READ_API_KEY: string = import.meta.env.VITE_READ_API_KEY
+const readAuthKey: string = import.meta.env.VITE_READ_API_AUTH
+const readAllENDPOINT: string = import.meta.env.VITE_READ_ALL_ENDPOINT
+const filteredENDPOINT: string = import.meta.env.VITE_READ_FILTERED_ENDPOINT
 
 
 const instance = axios.create({
