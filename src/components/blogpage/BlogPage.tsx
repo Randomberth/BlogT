@@ -21,6 +21,7 @@ function BlogPage() {
     getPagesByCategory().catch(null)
     getCategoriesName();
 
+   
     if (currentPage == 0) {
       setCurrentPage(1)
       setSelectedCategory("AI")
@@ -44,6 +45,7 @@ function BlogPage() {
     try {
       const arrayCategories: string[] | undefined  = await getDataCategories()
       setCategories(arrayCategories)
+   
       console.log("arrayCategories: ",arrayCategories);
     } catch (error) {
       console.log(error);
@@ -81,7 +83,7 @@ function BlogPage() {
 
       {/* category section */}
       <div> 
-        <CategoryFilter categories={categories} selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange}/>
+        <CategoryFilter categories={categories} selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange}/> 
       </div>
 
       {/* blogCards section */}
