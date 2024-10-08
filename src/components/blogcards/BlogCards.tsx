@@ -5,20 +5,12 @@ import { format } from 'date-fns';
 
 interface typeArrayBlogProp {
     blogs: InterfaceArticleBlog[]
-    //    currentPage: number,
-    //    selectedCategory : string | null,
-    //    pageSize: number 
 }
 
-//const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs, currentPage, selectedCategory, pageSize }) => {
 const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs }) => {
 
     let filteredBlogs: InterfaceArticleBlog[] = []
-
-    //const filteredBlogs: InterfaceArticleBlog[] = blogs
     filteredBlogs = blogs
-
-    //    console.log('filteredBlogs ::::', filteredBlogs, currentPage, selectedCategory, pageSize);
 
     const dateToText = (date: Date): string => {
         const formattedDate = format(date, 'yyyy-MM-dd'); // Ajusta el formato según tus necesidades
@@ -43,15 +35,6 @@ const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs }) => {
 
                     </NavLink>)
 
-
-
-
-
-
-
-                /*                filteredBlogs.map((item: any) => (
-                                    <p key={item.id}>Author id: {item.id}</p>
-                                ))*/
             }
         </div>
     )

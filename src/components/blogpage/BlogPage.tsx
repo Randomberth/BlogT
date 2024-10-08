@@ -11,7 +11,6 @@ function BlogPage() {
   const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-  //const [activeCategory, setActiveCategory] = useState<string>("")
   const [categories, setCategories] = useState<string[] | undefined>([])
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
   const pageSize: number = 9 // blogs per page
@@ -45,8 +44,6 @@ function BlogPage() {
     try {
       const arrayCategories: string[] | undefined = await getDataCategories()
       setCategories(arrayCategories)
-
-      console.log("arrayCategories: ", arrayCategories);
     } catch (error) {
       console.log(error);
 
@@ -73,14 +70,6 @@ function BlogPage() {
   return (
     <div className="w-full flex flex-1 flex-col items-center justify-center bg-white">
 
-
-      {/* Map through the array and access the "author" property      
-
-      {dataBlog.map((item: any) => (
-        <p key={item.id}>Author id: {item.id}</p>
-      ))}
-      */}
-
       {/* category section */}
       <div>
         <CategoryFilter categories={categories} selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange} />
@@ -88,9 +77,7 @@ function BlogPage() {
 
       {/* blogCards section */}
       <div>
-        {/*    <Blogcards blogs={dataBlog} currentPage={currentPage} selectedCategory={selectedCategory} pageSize={pageSize} />   */}
         <Blogcards blogs={dataBlog} />
-
       </div>
 
       {/* pagination section */}
