@@ -10,7 +10,7 @@ function BlogPage() {
 
   const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [selectedCategory, setSelectedCategory] = useState<string | null>("AI")
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   //const [activeCategory, setActiveCategory] = useState<string>("")
   const [categories, setCategories] = useState<string[] | undefined>([])
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
