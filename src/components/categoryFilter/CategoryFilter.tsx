@@ -18,7 +18,7 @@ function Category({ selectedCategory, onCategoryChange, categories }: propsCateg
 
 
   const setCategoriesName = (val: string): void => {
-    const setter: string | null = (val === "All") ? null : val.trim()
+    const setter: string | null = (val === "All") ? null : val
     console.log("setter", setter);
     onCategoryChange(setter)
   }

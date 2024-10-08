@@ -19,8 +19,8 @@ const instance = axios.create({
 
 export async function getAllBlog(): Promise<InterfaceArticleBlog[] | undefined> {
   try {
-    console.log('EndPoint: ',readAllENDPOINT);
-    
+    console.log('EndPoint: ', readAllENDPOINT);
+
     const response = await instance.get(readAllENDPOINT)
     const { data } = response;
     return data
@@ -35,6 +35,8 @@ export async function getFilteredBlog(pageSize: number, currentPage: number, sel
   try {
     const OffSet = (currentPage - 1) * pageSize;
     const FinalEndPoint = selectedCategory ? `${filteredENDPOINT}${selectedCategory}` : readAllENDPOINT
+    console.log('Filtered:  ', FinalEndPoint);
+
     const response = await instance.get(FinalEndPoint, {
       params: {
         limit: pageSize,
