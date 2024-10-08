@@ -19,6 +19,8 @@ const instance = axios.create({
 
 export async function getAllBlog(): Promise<InterfaceArticleBlog[] | undefined> {
   try {
+    console.log('EndPoint: ',readAllENDPOINT);
+    
     const response = await instance.get(readAllENDPOINT)
     const { data } = response;
     return data

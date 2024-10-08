@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getFilteredBlog, getLenghtCategory } from "../../utils/getblog";
+import { getDataCategories } from "../../utils/getMetaData";
 import { InterfaceArticleBlog } from "../../utils/types";
 import Blogcards from "../blogcards";
 import Pagination from "../pagination";
@@ -10,13 +11,15 @@ function BlogPage() {
   const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-//  const [activeCategory, setActiveCategory] = useState<string | null>(null)
+  //const [activeCategory, setActiveCategory] = useState<string>("")
+  const [categories, setCategories] = useState<string[] | undefined>([])
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
   const pageSize: number = 9 // blogs per page
 
   useEffect(() => {
     getDataBlog().catch(null)
     getPagesByCategory().catch(null)
+    getCategoriesName();
 
     if (currentPage == 0) {
       setCurrentPage(1)
@@ -27,11 +30,26 @@ function BlogPage() {
   }, [pageSize, currentPage, selectedCategory])
 
   async function getDataBlog() {
-    const dataB: InterfaceArticleBlog[] | undefined = await getFilteredBlog(pageSize, currentPage, selectedCategory)
-    const dataToUse: InterfaceArticleBlog[] = dataB || [];
-    setDataBlog(dataToUse);
+    try {
+      const dataB: InterfaceArticleBlog[] | undefined = await getFilteredBlog(pageSize, currentPage, selectedCategory)
+      const dataToUse: InterfaceArticleBlog[] = dataB || [];
+      setDataBlog(dataToUse);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
+
+  const getCategoriesName = async() => {
+    try {
+      const arrayCategories: string[] | undefined  = await getDataCategories()
+      setCategories(arrayCategories)
+      console.log("arrayCategories: ",arrayCategories);
+    } catch (error) {
+      console.log(error);
+        
+    }
+  }
 
   async function getPagesByCategory() {
     const pages: number = await getLenghtCategory(selectedCategory)
@@ -63,7 +81,7 @@ function BlogPage() {
 
       {/* category section */}
       <div> 
-        <CategoryFilter selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange}/>
+        <CategoryFilter categories={categories} selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange}/>
       </div>
 
       {/* blogCards section */}
