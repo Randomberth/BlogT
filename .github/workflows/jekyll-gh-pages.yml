@@ -12,6 +12,7 @@ on:
 env:
       VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
       VITE_READ_ALL_ENDPOINT: ${{ secrets.VITE_READ_ALL_ENDPOINT }}
+      VITE_READ_FILTERED_ENDPOINT: ${{ secrets.VITE_READ_FILTERED_ENDPOINT }}
       VITE_READ_API_KEY: ${{ secrets.VITE_READ_API_KEY }}
       VITE_READ_API_AUTH: ${{ secrets.VITE_READ_API_AUTH }}
 
