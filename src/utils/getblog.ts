@@ -5,9 +5,9 @@ const BASE_URL: string = import.meta.env.VITE_BASE_URL
 const READ_API_KEY: string = import.meta.env.VITE_READ_API_KEY
 const readAuthKey: string = import.meta.env.VITE_READ_API_AUTH
 const readAllENDPOINT: string = import.meta.env.VITE_READ_ALL_ENDPOINT
-//const filteredENDPOINT: string = import.meta.env.VITE_READ_FILTERED_ENDPOINT
+const filteredENDPOINT: string = import.meta.env.VITE_READ_FILTERED_ENDPOINT
 
-const filteredENDPOINT: string = 'Blogs?select=*&category=eq.'
+//const filteredENDPOINT: string = 'Blogs?select=*&category=eq.'
 
 
 const instance = axios.create({
