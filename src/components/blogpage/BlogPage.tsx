@@ -45,8 +45,6 @@ function BlogPage() {
     try {
       const arrayCategories: string[] | undefined = await getDataCategories()
       setCategories(arrayCategories)
-
-      console.log("arrayCategories: ", arrayCategories);
     } catch (error) {
       console.log(error);
 
