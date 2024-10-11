@@ -14,7 +14,7 @@ function BlogPage() {
   //const [activeCategory, setActiveCategory] = useState<string>("")
   const [categories, setCategories] = useState<string[] | undefined>([])
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
-  const [pagesNumbers, setpagesNumbers] = useState<number[]>([1, 2, 3, 4, 5])
+  //const [pagesNumbers, setpagesNumbers] = useState<number[]>([])
 
   const pageSize: number = 9 // blogs per page
 
@@ -22,7 +22,7 @@ function BlogPage() {
     getDataBlog().catch(null)
     getPagesByCategory().catch(null)
     getCategoriesName();
-    handleLimitPages();
+    //handleLimitPages(elementsByCategory, pageSize);
 
 
     if (currentPage == 0) {
@@ -69,16 +69,21 @@ function BlogPage() {
     setCurrentPage(1);
   }
 
-  const handleLimitPages = () => {
+  /*
+  const handleLimitPages = (elementsByCategory: number, pageSize: number) => {
 
     const totalPages = Math.ceil(elementsByCategory / pageSize)
+    console.log('totalPages', totalPages);
+
     const pagesNumbersArray: number[] = []
     for (let i = 1; i <= totalPages; i++) {
       pagesNumbersArray.push(i)
     }
+    console.log('pagesNumbersArray', pagesNumbersArray);
+
     setpagesNumbers(pagesNumbersArray)
     console.log('vemos luz', pagesNumbers);
-  }
+  }*/
 
 
 
@@ -94,7 +99,7 @@ function BlogPage() {
       */}
       <button
         className="w-20 h-10 bg-violet-700"
-        onClick={handleLimitPages}
+        onClick={() => console.log('Test')}
       >
         test
       </button>
@@ -112,7 +117,7 @@ function BlogPage() {
 
       {/* pagination section */}
       <div>
-        <Pagination currentPage={currentPage} pageSize={pageSize} elementsByCategory={elementsByCategory} onPageChange={handlePageChange} pagesNumbers={pagesNumbers} />
+        <Pagination currentPage={currentPage} pageSize={pageSize} elementsByCategory={elementsByCategory} onPageChange={handlePageChange} />
       </div>
 
 
