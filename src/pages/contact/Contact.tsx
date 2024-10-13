@@ -1,14 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useBearStore } from "../../store/blogStore"
+import TestData from "../../components/testData";
 
 function Contact() {
 
-  const { bears, increase, decrease, fetchData, data } = useBearStore();
+  const { bears, fetchData, data, resetData } = useBearStore();
   
-  useEffect(() => {
-  console.log("ContactPage: ",data);
+const [testData, setTestData] = useState<any>(data)
 
-  }, [])
+
+
+  useEffect(() => {
+    setTestData(data);
+    console.log("testData: ",testData);
+
+  }, [data])
   
 
 
@@ -22,24 +28,19 @@ function Contact() {
         <h4>Test {bears} </h4>
         <button
           className="w-24 h-10 bg-pink-600 rounded-md m-2"
-          onClick={() => increase(5)}
-        >
-          Test Up
-        </button>
-        <button
-          className="w-24 h-10 bg-pink-600 rounded-md m-2"
-          onClick={() => decrease(5)}
-        >
-          Test Down
-        </button>
-        <button
-          className="w-24 h-10 bg-pink-600 rounded-md m-2"
           onClick={() => fetchData()}
         >
-          Test Fetch
+          Test Data
+        </button>
+        <button
+          className="w-24 h-10 bg-pink-600 rounded-md m-2"
+          onClick={() => resetData()}
+        >
+          resetData
         </button>
 
       </div>
+      <TestData testData={testData}/>
     </div>
   )
 }
