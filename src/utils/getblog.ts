@@ -6,6 +6,11 @@ const READ_API_KEY: string = import.meta.env.VITE_READ_API_KEY
 const readAuthKey: string = import.meta.env.VITE_READ_API_AUTH
 const readAllENDPOINT: string = import.meta.env.VITE_READ_ALL_ENDPOINT
 const filteredENDPOINT: string = import.meta.env.VITE_READ_FILTERED_ENDPOINT
+<<<<<<< HEAD
+=======
+//const filteredENDPOINT: string = 'Blogs?select=*&category=eq.'
+
+>>>>>>> globalState
 
 const instance = axios.create({
   baseURL: BASE_URL,
