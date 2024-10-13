@@ -13,7 +13,7 @@ const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs }) => {
     filteredBlogs = blogs
 
     const dateToText = (date: Date): string => {
-        const formattedDate = format(date, 'yyyy-MM-dd'); // Ajusta el formato según tus necesidades
+        const formattedDate = format(date, 'yyyy-MM-dd'); 
 
         return formattedDate
     };
@@ -34,7 +34,6 @@ const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs }) => {
                         <p className="text-sm text-gray-600">Published: {dateToText(blog.published_date)}</p>
 
                     </NavLink>)
-
             }
         </div>
     )

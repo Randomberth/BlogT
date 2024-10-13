@@ -7,8 +7,7 @@ interface propsCategory {
 
 function Category({ selectedCategory, onCategoryChange, categories }: propsCategory) {
 
-
-  const setCategoriesName = (val: string): void => {
+    const setCategoriesName = (val: string): void => {
     const setter: string | null = (val === "All") ? null : val
     onCategoryChange(setter)
   }
