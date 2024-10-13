@@ -1,23 +1,13 @@
-import { useEffect } from 'react'
 
 interface propsCategory {
   selectedCategory: string | null,
   onCategoryChange: (currentCategory: string | null) => void,
   categories: string[] | undefined,
-  //setCategories: (set: string[] | undefined ) => void 
 }
 
 function Category({ selectedCategory, onCategoryChange, categories }: propsCategory) {
-  //const [category, setCategory] = useState<string[] | undefined>([])
 
-  useEffect(() => {
-    //  getCategories().catch(null)
-
-  }, [])
-
-
-
-  const setCategoriesName = (val: string): void => {
+    const setCategoriesName = (val: string): void => {
     const setter: string | null = (val === "All") ? null : val
     onCategoryChange(setter)
   }

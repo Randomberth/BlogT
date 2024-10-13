@@ -1,7 +1,5 @@
 import { NavLink } from "react-router-dom"
 import { useState } from "react";
-
-//react icons
 import { FaFacebook, FaDribbble, FaTwitter, FaBars, FaXmark } from "react-icons/fa6"; 
 
 
@@ -25,7 +23,6 @@ function NavBar() {
 
 
   return (
-    // <header className="bg-black text-white fixed top-0 left-0 right-0">
     <header className="bg-black text-white ">
        <nav className="px-4 py-4 max-w-7xl mx-auto flex justify-between items-center">
         <a href="/" className="text-xl font-bold text-white">Design <span className="text-orange-500">DK</span></a>
