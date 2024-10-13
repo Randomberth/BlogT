@@ -89,8 +89,6 @@ function BlogPage() {
   return (
     <div className="w-full flex flex-1 flex-col items-center justify-center bg-white">
 
-<<<<<<< HEAD
-=======
 
       {/* Map through the array and access the "author" property      
 
@@ -104,7 +102,6 @@ function BlogPage() {
       >
         test
       </button>
->>>>>>> globalState
       {/* category section */}
       <div>
         <CategoryFilter categories={categories} selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange} />
