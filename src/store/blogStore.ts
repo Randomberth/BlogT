@@ -25,21 +25,25 @@ const instance = axios.create({
 
 interface blogState {
     bears: number
-    data: InterfaceArticleBlog[] | undefined;
-    fetchData: () => Promise<void>;
+    resetBears: () => void
+    data: InterfaceArticleBlog[] | undefined
+    fetchData: () => Promise<void>
+    resetData: () => void
     increase: (by: number) => void
     decrease: (by: number) => void
-}
+} 
 
 export const useBearStore = create(persist<blogState>(
     (set) => ({
         bears: 0,
+        resetBears: () => set ({ bears: 0 }) ,
         data: [],
         fetchData: async() => {
           const dataToUse = await fetchAux()
           set({ data: dataToUse });
 
         },
+        resetData: () => set({ data: []}),
         increase: (by) => set((state) => ({ bears: state.bears + by })),
         decrease: (by) => set((state) => ({ bears: state.bears - by })),
     }),
@@ -54,7 +58,7 @@ export const useBearStore = create(persist<blogState>(
 const fetchAux = async() => {
   const response = await getAllBlog()
   const dataToUse = response || [];
-  console.log("Fetch Aux",dataToUse);
+ // console.log("Fetch Aux",dataToUse);
   
   
   return dataToUse 
