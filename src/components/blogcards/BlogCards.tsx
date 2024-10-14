@@ -7,7 +7,7 @@ interface typeArrayBlogProp {
     blogs: InterfaceArticleBlog[]
 }
 
-const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs }) => {
+const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs }) => { 
 
     let filteredBlogs: InterfaceArticleBlog[] = []
     filteredBlogs = blogs

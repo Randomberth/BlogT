@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getFilteredBlog, getLenghtCategory } from "../../utils/getblog";
 import { getDataCategories } from "../../utils/getMetaData";
+import { useBlogStore } from "../../store/blogStore"
 import { InterfaceArticleBlog } from "../../utils/types";
 import Blogcards from "../blogcards";
 import Pagination from "../pagination";
@@ -8,14 +9,24 @@ import CategoryFilter from "../categoryFilter";
 
 function BlogPage() {
 
-  const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
-  const [currentPage, setCurrentPage] = useState<number>(1)
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const { selectedCategory, setSelectedCategory, currentPage, setCurrentPage, pageSize  } = useBlogStore();
+
   const [categories, setCategories] = useState<string[] | undefined>([])
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
 
-  const pageSize: number = 9 // blogs per page
+  const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
 
+  async function getDataBlog() {
+    try {
+      const dataB: InterfaceArticleBlog[] | undefined = await getFilteredBlog(pageSize, currentPage, selectedCategory)
+      const dataToUse: InterfaceArticleBlog[] = dataB || [];
+      setDataBlog(dataToUse);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //////
   useEffect(() => {
     getDataBlog().catch(null)
     getPagesByCategory().catch(null)
@@ -30,15 +41,7 @@ function BlogPage() {
 
   }, [pageSize, currentPage, selectedCategory])
 
-  async function getDataBlog() {
-    try {
-      const dataB: InterfaceArticleBlog[] | undefined = await getFilteredBlog(pageSize, currentPage, selectedCategory)
-      const dataToUse: InterfaceArticleBlog[] = dataB || [];
-      setDataBlog(dataToUse);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
 
 
   const getCategoriesName = async () => {
@@ -56,7 +59,7 @@ function BlogPage() {
     setElementsByCategory(pages)
   }
 
-
+ 
   const handlePageChange = (pageNumber: number): void => {
     setCurrentPage(pageNumber);
   }
@@ -71,12 +74,6 @@ function BlogPage() {
   return (
     <div className="w-full flex flex-1 flex-col items-center justify-center bg-white">
 
-      <button
-        className="w-20 h-10 bg-violet-700"
-        onClick={() => console.log('Test')}
-      >
-        test
-      </button>
       {/* category section */}
       <div>
         <CategoryFilter categories={categories} selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange} />
