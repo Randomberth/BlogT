@@ -8,6 +8,8 @@ import Pagination from "../pagination";
 import CategoryFilter from "../categoryFilter";
 
 function BlogPage() {
+  //  const [sliceNumberPages, setSliceNumberPages] = useState<number[]>([])
+
 
   const { selectedCategory, setSelectedCategory, currentPage, setCurrentPage, pageSize } = useBlogStore();
 
@@ -15,6 +17,28 @@ function BlogPage() {
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
 
   const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
+
+
+  /////////////////
+  const totalPages = Math.ceil(elementsByCategory / pageSize)
+
+  const limitPagintation = (totalPages: number): number[] => {
+    const pagesNumbers: number[] = []
+
+    for (let i = 1; i <= totalPages; i++) {
+      pagesNumbers.push(i)
+    }
+    console.log("test All", pagesNumbers);
+
+    return pagesNumbers
+  }
+
+
+  const pagesNumbers: number[] = limitPagintation(totalPages)
+  const pagesNumbers5: number[] = pagesNumbers.slice(0, 5)
+  console.log("Test 5", pagesNumbers5);
+  //console.log("sliceNumberPages :", sliceNumberPages);
+  //////////////
 
   async function getDataBlog() {
     try {
@@ -71,22 +95,6 @@ function BlogPage() {
   }
   ////////////
 
-  const totalPages = Math.ceil(elementsByCategory / pageSize)
-
-  const limitPagintation = (totalPages: number): number[] => {
-    const pagesNumbers: number[] = []
-
-    for (let i = 1; i <= totalPages; i++) {
-      pagesNumbers.push(i)
-    }
-    console.log(pagesNumbers);
-
-    return pagesNumbers
-  }
-
-  const pagesNumbers: number[] = limitPagintation(totalPages)
-
-  ////////////
 
 
 
@@ -105,7 +113,7 @@ function BlogPage() {
 
       {/* pagination section */}
       <div>
-        <Pagination currentPage={currentPage} onPageChange={handlePageChange} totalPages={totalPages} pagesNumbers={pagesNumbers} />
+        <Pagination currentPage={currentPage} onPageChange={handlePageChange} totalPages={totalPages} pagesNumbers={pagesNumbers5} />
       </div>
 
 

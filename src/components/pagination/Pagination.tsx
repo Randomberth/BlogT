@@ -11,18 +11,7 @@ interface typeArrayPaginationProp {
 
 const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChange, totalPages, pagesNumbers }) => {
 
-  /*
-    // llevar esta logica un nivel mas arriba ---->
-    const [limitPagination, setLimitPagination] = useState<number[]>([])
-    const totalPages = Math.ceil(elementsByCategory / pageSize)
-    const pagesNumbers: number[] = []
-  
-    for (let i = 1; i <= totalPages; i++) {
-      pagesNumbers.push(i)
-    }
-  
-    ////
-  */
+
   const pageChangeUp = (nPageF: number): void => {
     const next: number = (nPageF >= totalPages) ? nPageF : nPageF + 1
     onPageChange(next)
