@@ -9,7 +9,7 @@ import CategoryFilter from "../categoryFilter";
 
 function BlogPage() {
 
-  const { selectedCategory, setSelectedCategory, currentPage, setCurrentPage, pageSize  } = useBlogStore();
+  const { selectedCategory, setSelectedCategory, currentPage, setCurrentPage, pageSize } = useBlogStore();
 
   const [categories, setCategories] = useState<string[] | undefined>([])
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
@@ -32,6 +32,7 @@ function BlogPage() {
     getPagesByCategory().catch(null)
     getCategoriesName();
 
+    //const pagesNumbers: number[] = limitPagintation(totalPages)
 
     if (currentPage == 0) {
       setCurrentPage(1)
@@ -59,7 +60,7 @@ function BlogPage() {
     setElementsByCategory(pages)
   }
 
- 
+
   const handlePageChange = (pageNumber: number): void => {
     setCurrentPage(pageNumber);
   }
@@ -68,6 +69,24 @@ function BlogPage() {
     setSelectedCategory(category);
     setCurrentPage(1);
   }
+  ////////////
+
+  const totalPages = Math.ceil(elementsByCategory / pageSize)
+
+  const limitPagintation = (totalPages: number): number[] => {
+    const pagesNumbers: number[] = []
+
+    for (let i = 1; i <= totalPages; i++) {
+      pagesNumbers.push(i)
+    }
+    console.log(pagesNumbers);
+
+    return pagesNumbers
+  }
+
+  const pagesNumbers: number[] = limitPagintation(totalPages)
+
+  ////////////
 
 
 
@@ -86,7 +105,7 @@ function BlogPage() {
 
       {/* pagination section */}
       <div>
-        <Pagination currentPage={currentPage} pageSize={pageSize} elementsByCategory={elementsByCategory} onPageChange={handlePageChange} />
+        <Pagination currentPage={currentPage} onPageChange={handlePageChange} totalPages={totalPages} pagesNumbers={pagesNumbers} />
       </div>
 
 
