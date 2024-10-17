@@ -11,10 +11,10 @@ function BlogPage() {
 
   const { selectedCategory, setSelectedCategory, currentPage, setCurrentPage, pageSize } = useBlogStore();
   const { dataBlog, setDataBlog } = useBlogStore();
+
   const [categories, setCategories] = useState<string[] | undefined>([])
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
 
-  //const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
 
   async function getDataBlog() {
     try {
@@ -48,6 +48,7 @@ function BlogPage() {
     try {
       const arrayCategories: string[] | undefined = await getDataCategories()
       setCategories(arrayCategories)
+
     } catch (error) {
       console.log(error);
 
