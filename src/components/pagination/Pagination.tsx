@@ -1,16 +1,23 @@
 //import { useEffect, useState } from "react"
 
-import { useEffect, useState } from "react"
-
 interface typeArrayPaginationProp {
   currentPage: number,
+  pageSize: number,
+  elementsByCategory: number,
   onPageChange: (pageNumber: number) => void,
-  totalPages: number,
-  pagesNumbers: number[]
+  //pagesNumbers: number[]
 }
 
-const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChange, totalPages, pagesNumbers }) => {
+const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, pageSize, elementsByCategory, onPageChange }) => {
 
+
+
+  const totalPages = Math.ceil(elementsByCategory / pageSize)
+  const pagesNumbers: number[] = []
+
+  for (let i = 1; i <= totalPages; i++) {
+    pagesNumbers.push(i)
+  }
 
   const pageChangeUp = (nPageF: number): void => {
     const next: number = (nPageF >= totalPages) ? nPageF : nPageF + 1

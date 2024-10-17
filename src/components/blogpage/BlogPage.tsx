@@ -8,37 +8,13 @@ import Pagination from "../pagination";
 import CategoryFilter from "../categoryFilter";
 
 function BlogPage() {
-  //  const [sliceNumberPages, setSliceNumberPages] = useState<number[]>([])
-
 
   const { selectedCategory, setSelectedCategory, currentPage, setCurrentPage, pageSize } = useBlogStore();
-
+  const { dataBlog, setDataBlog } = useBlogStore();
   const [categories, setCategories] = useState<string[] | undefined>([])
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
 
-  const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
-
-
-  /////////////////
-  const totalPages = Math.ceil(elementsByCategory / pageSize)
-
-  const limitPagintation = (totalPages: number): number[] => {
-    const pagesNumbers: number[] = []
-
-    for (let i = 1; i <= totalPages; i++) {
-      pagesNumbers.push(i)
-    }
-    console.log("test All", pagesNumbers);
-
-    return pagesNumbers
-  }
-
-
-  const pagesNumbers: number[] = limitPagintation(totalPages)
-  const pagesNumbers5: number[] = pagesNumbers.slice(0, 5)
-  console.log("Test 5", pagesNumbers5);
-  //console.log("sliceNumberPages :", sliceNumberPages);
-  //////////////
+  //const [dataBlog, setDataBlog] = useState<InterfaceArticleBlog[]>([])
 
   async function getDataBlog() {
     try {
@@ -56,7 +32,6 @@ function BlogPage() {
     getPagesByCategory().catch(null)
     getCategoriesName();
 
-    //const pagesNumbers: number[] = limitPagintation(totalPages)
 
     if (currentPage == 0) {
       setCurrentPage(1)
@@ -93,8 +68,6 @@ function BlogPage() {
     setSelectedCategory(category);
     setCurrentPage(1);
   }
-  ////////////
-
 
 
 
@@ -113,7 +86,7 @@ function BlogPage() {
 
       {/* pagination section */}
       <div>
-        <Pagination currentPage={currentPage} onPageChange={handlePageChange} totalPages={totalPages} pagesNumbers={pagesNumbers5} />
+        <Pagination currentPage={currentPage} pageSize={pageSize} elementsByCategory={elementsByCategory} onPageChange={handlePageChange} />
       </div>
 
 
