@@ -21,8 +21,8 @@ interface blogState {
 
 export const useBlogStore = create(persist<blogState>(
   (set) => ({
-    pagesNumbersT: [1, 2, 3, 5, 5, 5, 5],
-    setPagesNumbersT: (data: number[]) => set({ pagesNumbersT: data }),
+    pagesNumbersT: [], 
+    setPagesNumbersT: (arrayData: number[]) => set({ pagesNumbersT: arrayData }),
     dataBlog: [],
     setDataBlog: (data: InterfaceArticleBlog[]) => set({ dataBlog: data }),
     selectedCategory: null,

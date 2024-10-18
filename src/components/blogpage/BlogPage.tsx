@@ -9,13 +9,26 @@ import CategoryFilter from "../categoryFilter";
 
 function BlogPage() {
 
+
   const { selectedCategory, setSelectedCategory, currentPage, setCurrentPage, pageSize } = useBlogStore();
   const { dataBlog, setDataBlog } = useBlogStore();
-
   const [categories, setCategories] = useState<string[] | undefined>([])
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
 
 
+  //////
+  const totalPages = Math.ceil(elementsByCategory / pageSize)
+  const pagesNumbers: number[] = [] //// llevar a global
+  for (let i = 1; i <= totalPages; i++) {
+    pagesNumbers.push(i)
+  }
+  const auxPagesNumbersT: number [] = pagesNumbers.slice(0, 5)
+  //setSlicePages(auxPagesNumbersT);
+  //console.log("slicePages:", slicePages);
+  
+/////
+
+  
   async function getDataBlog() {
     try {
       const dataB: InterfaceArticleBlog[] | undefined = await getFilteredBlog(pageSize, currentPage, selectedCategory)
@@ -40,7 +53,6 @@ function BlogPage() {
     }
 
   }, [pageSize, currentPage, selectedCategory])
-
 
 
 
@@ -87,7 +99,7 @@ function BlogPage() {
 
       {/* pagination section */}
       <div>
-        <Pagination currentPage={currentPage} pageSize={pageSize} elementsByCategory={elementsByCategory} onPageChange={handlePageChange} />
+        <Pagination currentPage={currentPage} pageSize={pageSize} elementsByCategory={elementsByCategory} onPageChange={handlePageChange} auxPagesNumbersT={auxPagesNumbersT}/>
       </div>
 
 
