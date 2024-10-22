@@ -6,7 +6,7 @@ interface typeArrayPaginationProp {
   elementsByCategory: number,
   totalPages: number
 }
-/// gestionar current page y set current page ... incluir en la persistencia la paginacion seleccionada
+
 const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChange, totalPages, elementsByCategory }) => {
 
   const [sliceNumberPages, setSliceNumberPages] = useState<number[]>([])
@@ -25,6 +25,7 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChan
     pagesNumbers = pagesNumbers.slice(0, 5);
     setSliceNumberPages(pagesNumbers)
 
+
     return pagesNumbers
 
   }, [totalPages, elementsByCategory]);
@@ -37,7 +38,7 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChan
     nPage = nPage + 1;
     onPageChange(next)
 
-    if (sliceNumberPages.length < 5) {
+    if (totalPages <= 5) {
       // Do nothing
 
     } else {
@@ -49,10 +50,6 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChan
         setSliceNumberPages([nPage - 2, nPage - 1, nPage, nPage + 1, nPage + 2])
       }
     }
-
-
-
-
   }
 
   const pageChangeDown = (nPage: number): void => {
@@ -60,7 +57,8 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChan
     nPage = nPage - 1;
     onPageChange(previous)
 
-    if (sliceNumberPages.length < 5) {
+    if (totalPages <= 5) {
+
       // Do nothing
 
     } else {
