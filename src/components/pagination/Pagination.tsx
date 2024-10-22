@@ -1,41 +1,65 @@
-//import { useEffect, useState } from "react"
-
-
+import { useEffect, useMemo, useState } from "react"
 
 interface typeArrayPaginationProp {
   currentPage: number,
-  pageSize: number,
-  elementsByCategory: number,
   onPageChange: (pageNumber: number) => void,
-  auxPagesNumbersT: number[]
+  elementsByCategory: number,
+  totalPages: number
 }
+//// gestionar current page y set current page ... incluir en la persistencia la paginacion seleccionada
+const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChange, totalPages, elementsByCategory }) => {
 
-const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, pageSize, elementsByCategory, onPageChange, auxPagesNumbersT }) => {
+  const [sliceNumberPages, setSliceNumberPages] = useState<number[]>([])
 
 
-  
+  useEffect(()=> {
+    memoSliceTotalPages
+    
+    },[])
+    
+const memoSliceTotalPages: number[] = useMemo(() =>  {
+    let pagesNumbers: number[] = [] 
+    for (let i = 1; i <= totalPages; i++) {
+      pagesNumbers.push(i)
+    }
+    pagesNumbers = pagesNumbers.slice(0, 5);
+    setSliceNumberPages(pagesNumbers)
+    return pagesNumbers
 
-  const totalPages = Math.ceil(elementsByCategory / pageSize)
+  }  , [totalPages, elementsByCategory]);
 
-  const pageChangeUp = (nPageF: number): void => {
-    const next: number = (nPageF >= totalPages) ? nPageF : nPageF + 1
+
+
+
+  const pageChangeUp = (nPage: number): void => {
+    const next: number = (nPage >= totalPages) ? nPage : nPage + 1
+    nPage = nPage + 1;
     onPageChange(next)
-    /*  if (nPageF >= 3) {
-        setSliceNumberPages([initLimit + 1, endLimit + 1])
-      }*/
+
+    if ((nPage) < 3) {
+      setSliceNumberPages([1, 2, 3, 4, 5])
+    } else if ( nPage > ( totalPages - 2 )){
+      //Handle the case when the page is near the end
+    } else {
+      setSliceNumberPages([nPage - 2, nPage - 1, nPage, nPage + 1, nPage + 2])
+      }
   }
 
-  const pageChangeDown = (nPageF: number): void => {
-    const previous: number = (nPageF <= 1) ? nPageF : nPageF - 1
+  const pageChangeDown = (nPage: number): void => {
+    const previous: number = (nPage <= 1) ? nPage : nPage - 1
+    nPage = nPage - 1;
     onPageChange(previous)
-    /*  if (nPageF <= (totalPages - 3)) {
-        setSliceNumberPages([initLimit - 1, endLimit - 1])
-  
-      }*/
+    
+    if ((nPage) <= 3) {
+      setSliceNumberPages([1, 2, 3, 4, 5])
+    } else if ( nPage > ( totalPages - 2 )){
+      //Handle the case when the page is near the end
+    } else {
+      setSliceNumberPages([nPage - 2, nPage - 1, nPage, nPage + 1, nPage + 2])
+    }
   }
 
   let val: string | null = null;
-
 
   return (
     <div className=" flex gap-4 items-center py-4">
@@ -44,7 +68,7 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, pageSize, 
           Previus
         </a>
         <ul className="flex gap-5" >
-          {auxPagesNumbersT.map(nPage => (
+          {sliceNumberPages.map(nPage => (
             <li key={nPage}
               className={`flex  w-7 h-7 border rounded-md justify-center items-center ${nPage === currentPage ? 'font-extrabold text-xl underline bg-slate-100' : 'font-normal'}`}>
               <a className="cursor-pointer " onClick={() => onPageChange(nPage)} style={{ backgroundColor: `${val}` }} >{nPage}</a>
