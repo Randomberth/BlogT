@@ -6,19 +6,19 @@ interface typeArrayPaginationProp {
   elementsByCategory: number,
   totalPages: number
 }
-//// gestionar current page y set current page ... incluir en la persistencia la paginacion seleccionada
+/// gestionar current page y set current page ... incluir en la persistencia la paginacion seleccionada
 const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChange, totalPages, elementsByCategory }) => {
 
   const [sliceNumberPages, setSliceNumberPages] = useState<number[]>([])
 
 
-  useEffect(()=> {
+  useEffect(() => {
     memoSliceTotalPages
-    
-    },[])
-    
-const memoSliceTotalPages: number[] = useMemo(() =>  {
-    let pagesNumbers: number[] = [] 
+
+  }, [])
+
+  const memoSliceTotalPages: number[] = useMemo(() => {
+    let pagesNumbers: number[] = []
     for (let i = 1; i <= totalPages; i++) {
       pagesNumbers.push(i)
     }
@@ -26,7 +26,7 @@ const memoSliceTotalPages: number[] = useMemo(() =>  {
     setSliceNumberPages(pagesNumbers)
     return pagesNumbers
 
-  }  , [totalPages, elementsByCategory]);
+  }, [totalPages, elementsByCategory]);
 
 
 
@@ -38,21 +38,21 @@ const memoSliceTotalPages: number[] = useMemo(() =>  {
 
     if ((nPage) < 3) {
       setSliceNumberPages([1, 2, 3, 4, 5])
-    } else if ( nPage > ( totalPages - 2 )){
+    } else if (nPage > (totalPages - 2)) {
       //Handle the case when the page is near the end
     } else {
       setSliceNumberPages([nPage - 2, nPage - 1, nPage, nPage + 1, nPage + 2])
-      }
+    }
   }
 
   const pageChangeDown = (nPage: number): void => {
     const previous: number = (nPage <= 1) ? nPage : nPage - 1
     nPage = nPage - 1;
     onPageChange(previous)
-    
+
     if ((nPage) <= 3) {
       setSliceNumberPages([1, 2, 3, 4, 5])
-    } else if ( nPage > ( totalPages - 2 )){
+    } else if (nPage > (totalPages - 2)) {
       //Handle the case when the page is near the end
     } else {
       setSliceNumberPages([nPage - 2, nPage - 1, nPage, nPage + 1, nPage + 2])

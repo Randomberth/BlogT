@@ -17,11 +17,11 @@ function BlogPage() {
   const [categories, setCategories] = useState<string[] | undefined>([])
   const [elementsByCategory, setElementsByCategory] = useState<number>(0)
   const [totalPages, setTotalPages] = useState<number>(0)
-  
+
   /////
   const memoTotalPages = useMemo(() => Math.ceil(elementsByCategory / pageSize), [elementsByCategory, pageSize, selectedCategory]);
   /////
-   
+
   async function getDataBlog() {
     try {
       const dataB: InterfaceArticleBlog[] | undefined = await getFilteredBlog(pageSize, currentPage, selectedCategory)
@@ -32,13 +32,12 @@ function BlogPage() {
     }
   }
 
-  
+
   useEffect(() => {
-    
+
     getDataBlog().catch(null)
     getPagesByCategory().catch(null)
     getCategoriesName();
-    console.log("testRender"); 
 
     if (currentPage == 0) {
       setCurrentPage(1)
@@ -46,7 +45,7 @@ function BlogPage() {
       setElementsByCategory(0)
     }
 
-   setTotalPages(memoTotalPages);
+    setTotalPages(memoTotalPages);
   }, [currentPage, selectedCategory, elementsByCategory])
 
 
@@ -55,7 +54,7 @@ function BlogPage() {
     try {
       const arrayCategories: string[] | undefined = await getDataCategories()
       setCategories(arrayCategories)
-      
+
     } catch (error) {
       console.log(error);
 
@@ -91,14 +90,14 @@ function BlogPage() {
       </div>
 
       {/* pagination section */}
-{/*      <div className=" flex gap-4 items-center py-4"> */}
+      {/*      <div className=" flex gap-4 items-center py-4"> */}
       <div >
-        <Pagination 
-            currentPage={currentPage}
-            onPageChange={handlePageChange} 
-            elementsByCategory={elementsByCategory}
-            totalPages={totalPages}
-            /> 
+        <Pagination
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+          elementsByCategory={elementsByCategory}
+          totalPages={totalPages}
+        />
       </div>
 
 
