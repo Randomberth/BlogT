@@ -24,6 +24,7 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChan
     }
     pagesNumbers = pagesNumbers.slice(0, 5);
     setSliceNumberPages(pagesNumbers)
+
     return pagesNumbers
 
   }, [totalPages, elementsByCategory]);
@@ -36,13 +37,22 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChan
     nPage = nPage + 1;
     onPageChange(next)
 
-    if ((nPage) < 3) {
-      setSliceNumberPages([1, 2, 3, 4, 5])
-    } else if (nPage > (totalPages - 2)) {
-      //Handle the case when the page is near the end
+    if (sliceNumberPages.length < 5) {
+      // Do nothing
+
     } else {
-      setSliceNumberPages([nPage - 2, nPage - 1, nPage, nPage + 1, nPage + 2])
+      if ((nPage) < 3) {
+        setSliceNumberPages([1, 2, 3, 4, 5])
+      } else if (nPage > (totalPages - 2)) {
+        //Handle the case when the page is near the end
+      } else {
+        setSliceNumberPages([nPage - 2, nPage - 1, nPage, nPage + 1, nPage + 2])
+      }
     }
+
+
+
+
   }
 
   const pageChangeDown = (nPage: number): void => {
@@ -50,12 +60,17 @@ const Pagination: React.FC<typeArrayPaginationProp> = ({ currentPage, onPageChan
     nPage = nPage - 1;
     onPageChange(previous)
 
-    if ((nPage) <= 3) {
-      setSliceNumberPages([1, 2, 3, 4, 5])
-    } else if (nPage > (totalPages - 2)) {
-      //Handle the case when the page is near the end
+    if (sliceNumberPages.length < 5) {
+      // Do nothing
+
     } else {
-      setSliceNumberPages([nPage - 2, nPage - 1, nPage, nPage + 1, nPage + 2])
+      if ((nPage) <= 3) {
+        setSliceNumberPages([1, 2, 3, 4, 5])
+      } else if (nPage > (totalPages - 2)) {
+        //Handle the case when the page is near the end
+      } else {
+        setSliceNumberPages([nPage - 2, nPage - 1, nPage, nPage + 1, nPage + 2])
+      }
     }
   }
 
