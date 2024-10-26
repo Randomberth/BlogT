@@ -6,6 +6,7 @@ import { InterfaceArticleBlog } from "../../utils/types";
 import Blogcards from "../blogcards";
 import Pagination from "../pagination";
 import CategoryFilter from "../categoryFilter";
+import Sidebar from "../sidebar";
 
 
 
@@ -85,8 +86,20 @@ function BlogPage() {
       </div>
 
       {/* blogCards section */}
-      <div>
-        <Blogcards blogs={dataBlog} />
+      <div className="flex flex-col lg:flex-row gap-10 w-[100%]">
+        {/* blog cards components */}
+        <div className="bg-slate-300 w-[75%]">
+          <Blogcards blogs={dataBlog} />
+        </div>
+
+        {/* sidebar component */}
+        <div className="flex justify-center w-[18%]">
+          <Sidebar/>
+        </div>
+
+
+
+
       </div>
 
       {/* pagination section */}
