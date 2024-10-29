@@ -21,6 +21,7 @@ function BlogPage() {
 
   /////
   const memoTotalPages = useMemo(() => Math.ceil(elementsByCategory / pageSize), [elementsByCategory, pageSize, selectedCategory]);
+  
   /////
 
   async function getDataBlog() {
@@ -78,44 +79,35 @@ function BlogPage() {
   }
 
   return (
-    <div className="w-full flex flex-1 flex-col items-center justify-center bg-white">
+    <div className="flex flex-1 flex-col items-center justify-center bg-white "> 
 
-      {/* category section */}
       <div>
         <CategoryFilter categories={categories} selectedCategory={selectedCategory} onCategoryChange={handleCategoryChange} />
       </div>
+      <div className="flex flex-col bg-violet-500  lg:flex-row ">
+        <div className=" bg-purple-300 flex flex-col items-center m-2">
+          <Blogcards blogs={dataBlog} /> 
+        
+          <div >
+            <Pagination
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+              elementsByCategory={elementsByCategory}
+              totalPages={totalPages}
+            />
+          </div> 
+          
+        </div> 
+        <div className="flex justify-center w-[22%] bg-orange-400">
 
-      {/* blogCards section */}
-      <div className="flex flex-col lg:flex-row gap-10 w-[100%]">
-        {/* blog cards components */}
-        <div className="bg-slate-300 w-[75%]">
-          <Blogcards blogs={dataBlog} />
-        </div>
-
-        {/* sidebar component */}
-        <div className="flex justify-center w-[18%]">
-          <Sidebar/>
-        </div>
+          <Sidebar/> 
+        
+        </div> 
 
 
-
-
+      
       </div>
-
-      {/* pagination section */}
-      {/*      <div className=" flex gap-4 items-center py-4"> */}
-      <div >
-        <Pagination
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-          elementsByCategory={elementsByCategory}
-          totalPages={totalPages}
-        />
-      </div>
-
-
-
-
+                
     </div>
   )
 }

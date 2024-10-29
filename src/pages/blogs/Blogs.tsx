@@ -13,7 +13,7 @@ function Blogs() {
 
       {/* all blogs container */}
       <div className="max-w-7x1 mx-auto bg-sky-500 flex items-center justify-center">
-        <Blogpage />
+     <Blogpage /> 
       </div>
 
     </div>

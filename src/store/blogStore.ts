@@ -29,7 +29,7 @@ export const useBlogStore = create(persist<blogState>(
     setSelectedCategory: (category: string | null) => set({ selectedCategory: category }),
     currentPage: 1,
     setCurrentPage: (page: number) => set({ currentPage: page }),
-    pageSize: 9,
+    pageSize: 6,
     data: [],
     fetchData: async () => {
       const dataToUse = await fetchAux()
