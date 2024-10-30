@@ -23,12 +23,12 @@ function Sidebar() {
     }, [])
     
     const getDataLatest = useMemo(()=> {
-        const response: InterfaceArticleBlog[] | undefined  = data?.slice(0, 4);
+        const response: InterfaceArticleBlog[] | undefined  = data?.slice(0, 3);
         setlatestBlogs(response)
     }, [data])
 
     const getDataPopular = useMemo(()=> {
-        const response: InterfaceArticleBlog[] | undefined  = data?.slice(5, 8);
+        const response: InterfaceArticleBlog[] | undefined  = data?.slice(4, 7);
         setPopularBlogs(response)
     }, [data])
 
@@ -37,13 +37,13 @@ function Sidebar() {
 
 
   return (
-    <div className="flex-col h-[70%] mt-4">
+    <div className="flex-col mt-4">
         <div className="bg-yellow-50 m-auto">
             <h3 className="text-2xl font-semibold px-4">Latest Blogs</h3>
             <div>
                 {
                     latestBlogs?.map(blog => <div key={blog.id} className="my-5 border-b-2 border-spacing-2 px-4">
-                        <h4 className="font-medium mb-2">{blog.title}</h4>
+                        <h4 className="font-normal mb-2">{blog.title}</h4>
                         <Link to={"/"} className="font-base pb-2 hover:text-orange-500 inline-flex items-center py-1">Read more <FaArrowRight className="mt-1 ml-2"/>  </Link>
 
                     </div>)

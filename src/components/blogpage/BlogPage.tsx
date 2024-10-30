@@ -97,6 +97,7 @@ function BlogPage() {
             />
           </div> 
           
+          
         </div> 
         <div className="flex justify-center w-[22%] bg-orange-400">
 

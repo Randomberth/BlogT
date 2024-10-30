@@ -19,14 +19,14 @@ const BlogCards: React.FC<typeArrayBlogProp> = ({ blogs }) => {
     };
 
     return (
-        <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 ">
+        <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 ">
 
             {
                 filteredBlogs &&
                 filteredBlogs.map((blog) =>
 
-                    <NavLink to="#" key={blog.id} className="p-3 shadow-lg rounded cursor-pointer w-[90%] h-[90%] bg-red-400">
-                        <div className="w-[90%] m-auto">
+                    <NavLink to="#" key={blog.id} className="p-3 shadow-lg rounded cursor-pointer w-[98%] h-[98%] bg-red-400">
+                        <div className="w-[100%] m-auto">
                             <img src={blog.image} alt="" className="w-full" />
                         </div>
                         <h3 className="mt-4 mb-2 font-bold hover:text-blue-600 cursor-pointer">{blog.title}</h3>

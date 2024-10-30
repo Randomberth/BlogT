@@ -10,7 +10,6 @@ function App() {
       <div>
         <Navbar/>
       </div>
-{/*      <div className='flex h-screen-minus-60 lg:h-screen-minus-84'> */}
       <div>
         <Outlet/>
       </div>
